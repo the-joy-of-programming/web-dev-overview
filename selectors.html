@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <style>
+            .unfinished {
+                background: red;
+            }
+            li:nth-child(even) {
+                background: #CCC;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>A Game of Thrones</li>
+            <li>A Clash of Kings</li>
+            <li>A Storm of Swords</li>
+            <li>A Feast for Crows</li>
+            <li>A Dance with Dragons</li>
+            <li class="unfinished">The Winds of Winter</li>
+            <li class="unfinished">A Dream of Spring</li>
+        </ul>
+        <button onclick="document.querySelectorAll('.unfinished').forEach(element => element.textContent = 'Never gonna happen')">Reveal the truth</button>
+    </body>
+</html>
