@@ -1,0 +1,16 @@
+<html>
+<head>
+
+</head>
+<body>
+    <p>Hello there</p>
+    <script src="hello.js"></script>
+    <script>
+        Module.addOnPostRun(() => {
+            console.log('wasm code finished');
+            let theFunction = Module.cwrap('int_sqrt', 'number', ['number']);
+            console.log(`The integer square root of 150 is ${theFunction(150)}`);
+        });
+    </script>
+</body>
+</html>

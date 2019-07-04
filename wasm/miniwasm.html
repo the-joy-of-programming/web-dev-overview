@@ -1,0 +1,25 @@
+<html>
+    <body>
+        <p>No message from WASM</p>
+        <button disabled onclick="window.launchWasm()">Launch WASM</button>
+        <script>
+            function imported_func(arg) {
+                document.querySelector('p').textContent = `Message from WASM: ${arg}`;
+            }
+
+            var importObject = { imports: { imported_func } };
+//             (module
+//               (func (result i32)
+//                 (i32.const 42)
+//               )
+//               (export "exported_func" (func 0))
+//             )
+            url = 'data:application/wasm;base64,' + "AGFzbQEAAAABCAJgAX8AYAAAAhkBB2ltcG9ydHMNaW1wb3J0ZWRfZnVuYwAAAwIBAQcRAQ1leHBvcnRlZF9mdW5jAAEKCAEGAEEqEAAL";
+            WebAssembly.instantiateStreaming(fetch(url), importObject)
+            .then(obj => {
+               window.launchWasm = function() { obj.instance.exports.exported_func(); }
+               document.querySelector('button').removeAttribute('disabled');
+            });
+        </script>
+    </body>
+</html>
