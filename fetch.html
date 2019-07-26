@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script>
+            fetch('http://icanhazdadjoke.com/', {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json'
+                }
+            })
+            .then(
+             function(response) {
+               if (response.status !== 200) {
+                 console.log('Looks like there was a problem. Status Code: ' + response.status);
+                 return;
+               }
+               response.json().then(function(data) {
+                 const para = document.createElement('p');
+                 para.textContent = data.joke;
+                 document.querySelector('body').appendChild(para);
+               });
+            })
+            .catch(function(err) {
+              console.log('Fetch Error :-S', err);
+            });
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
